@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Palette Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Color Palette Generator</h1>
+        <form method="POST">
+            <label for="num_colors">Number of Colors:</label>
+            <input type="number" id="num_colors" name="num_colors" min="1" max="100" required>
+            
+            <label for="palette_type">Palette Type:</label>
+            <select id="palette_type" name="palette_type">
+                <option value="random">Random Colors</option>
+                <option value="shaded">Shaded Colors</option>
+            </select>
+        
+            <label for="shade_type">Shade Type:</label>
+            <select id="shade_type" name="shade_type">
+                <option value="both">Both</option>
+                <option value="light">Light Shades</option>
+                <option value="dark">Dark Shades</option>
+            </select>
+        
+            <label for="base_color">Choose Base Color (for shaded palette):</label>
+            <input type="color" id="base_color" name="base_color" value="#ff0000"> <!-- Default color is red -->
+            
+            <button type="submit">Generate</button>
+        </form>
+        
+        
+        <div class="palette">
+            {% for color in colors %}
+                <div class="color-box" style="background-color: {{ color }}"></div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
